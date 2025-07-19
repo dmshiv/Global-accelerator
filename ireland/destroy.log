@@ -1,0 +1,684 @@
+data.aws_ami.amazon_linux_2023: Reading...
+aws_vpc.create_vpc: Refreshing state... [id=vpc-003a5a97143001f6c]
+data.aws_ami.amazon_linux_2023: Read complete after 2s [id=ami-0b28ebe35b23ae274]
+aws_lb_target_group.create_target_group: Refreshing state... [id=arn:aws:elasticloadbalancing:eu-west-1:465242563055:targetgroup/ireland-tg/a1cf7d96b7ac358a]
+aws_route_table.private: Refreshing state... [id=rtb-0a9c69c8b737dd10a]
+aws_subnet.create_subnet[0]: Refreshing state... [id=subnet-08e212cfc0a970df0]
+aws_security_group.create_security_group: Refreshing state... [id=sg-067f1bcfcd672622e]
+aws_subnet.create_subnet[1]: Refreshing state... [id=subnet-01998ed6c5cb91a45]
+aws_internet_gateway.create_igw: Refreshing state... [id=igw-0d060aff17cba5823]
+aws_route_table.public: Refreshing state... [id=rtb-0ad8bbc95b4387998]
+aws_instance.create_instance[0]: Refreshing state... [id=i-0369e5a37ca4c0ab9]
+aws_route_table_association.private: Refreshing state... [id=rtbassoc-05ede3ba3c4ffaf67]
+aws_instance.create_instance[1]: Refreshing state... [id=i-0721f783559e17265]
+aws_lb.create_load_balancer: Refreshing state... [id=arn:aws:elasticloadbalancing:eu-west-1:465242563055:loadbalancer/app/ireland-lb/04d0aabd1144962e]
+aws_route_table_association.public: Refreshing state... [id=rtbassoc-03a7527bee2a10063]
+aws_lb_listener.http: Refreshing state... [id=arn:aws:elasticloadbalancing:eu-west-1:465242563055:listener/app/ireland-lb/04d0aabd1144962e/fd2d646ccc4d37bb]
+aws_lb_target_group_attachment.create_target_group_attachment[0]: Refreshing state... [id=arn:aws:elasticloadbalancing:eu-west-1:465242563055:targetgroup/ireland-tg/a1cf7d96b7ac358a-20250719171211156400000006]
+aws_lb_target_group_attachment.create_target_group_attachment[1]: Refreshing state... [id=arn:aws:elasticloadbalancing:eu-west-1:465242563055:targetgroup/ireland-tg/a1cf7d96b7ac358a-20250719171210737500000005]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # aws_instance.create_instance[0] will be destroyed
+  - resource "aws_instance" "create_instance" {
+      - ami                                  = "ami-0b28ebe35b23ae274" -> null
+      - arn                                  = "arn:aws:ec2:eu-west-1:465242563055:instance/i-0369e5a37ca4c0ab9" -> null
+      - associate_public_ip_address          = true -> null
+      - availability_zone                    = "eu-west-1a" -> null
+      - disable_api_stop                     = false -> null
+      - disable_api_termination              = false -> null
+      - ebs_optimized                        = false -> null
+      - get_password_data                    = false -> null
+      - hibernation                          = false -> null
+      - id                                   = "i-0369e5a37ca4c0ab9" -> null
+      - instance_initiated_shutdown_behavior = "stop" -> null
+      - instance_state                       = "running" -> null
+      - instance_type                        = "t2.micro" -> null
+      - ipv6_address_count                   = 0 -> null
+      - ipv6_addresses                       = [] -> null
+      - key_name                             = "my-ec2-key" -> null
+      - monitoring                           = false -> null
+      - placement_partition_number           = 0 -> null
+      - primary_network_interface_id         = "eni-0d0c0433508e357e3" -> null
+      - private_dns                          = "ip-31-0-1-237.eu-west-1.compute.internal" -> null
+      - private_ip                           = "31.0.1.237" -> null
+      - public_ip                            = "54.75.182.152" -> null
+      - region                               = "eu-west-1" -> null
+      - secondary_private_ips                = [] -> null
+      - security_groups                      = [] -> null
+      - source_dest_check                    = true -> null
+      - subnet_id                            = "subnet-08e212cfc0a970df0" -> null
+      - tags                                 = {
+          - "Name" = "ireland-EC2-pub"
+          - "Type" = "Public"
+        } -> null
+      - tags_all                             = {
+          - "Name" = "ireland-EC2-pub"
+          - "Type" = "Public"
+        } -> null
+      - tenancy                              = "default" -> null
+      - user_data                            = <<-EOT
+            #!/bin/bash
+            sudo yum install -y httpd
+            
+            # Install Apache web server (httpd)
+            sudo yum install -y httpd
+            sudo systemctl start httpd
+            sudo systemctl enable httpd
+            
+            # Write your custom HydCafe HTML homepage
+            sudo tee /var/www/html/index.html > /dev/null <<EOF
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Outlander</title>
+            </head>
+            <body>
+                <h1>Hey! You are likely in Europe 🇪🇺</h1>
+                <p>This content is coming from <strong>Ireland region (eu-west-1)</strong>.</p>
+            </body>
+            
+            </body>
+            </html>
+            EOF
+        EOT -> null
+      - user_data_replace_on_change          = false -> null
+      - vpc_security_group_ids               = [
+          - "sg-067f1bcfcd672622e",
+        ] -> null
+        # (8 unchanged attributes hidden)
+
+      - capacity_reservation_specification {
+          - capacity_reservation_preference = "open" -> null
+        }
+
+      - cpu_options {
+          - core_count       = 1 -> null
+          - threads_per_core = 1 -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - credit_specification {
+          - cpu_credits = "standard" -> null
+        }
+
+      - enclave_options {
+          - enabled = false -> null
+        }
+
+      - maintenance_options {
+          - auto_recovery = "default" -> null
+        }
+
+      - metadata_options {
+          - http_endpoint               = "enabled" -> null
+          - http_protocol_ipv6          = "disabled" -> null
+          - http_put_response_hop_limit = 1 -> null
+          - http_tokens                 = "optional" -> null
+          - instance_metadata_tags      = "disabled" -> null
+        }
+
+      - private_dns_name_options {
+          - enable_resource_name_dns_a_record    = false -> null
+          - enable_resource_name_dns_aaaa_record = false -> null
+          - hostname_type                        = "ip-name" -> null
+        }
+
+      - root_block_device {
+          - delete_on_termination = true -> null
+          - device_name           = "/dev/xvda" -> null
+          - encrypted             = false -> null
+          - iops                  = 100 -> null
+          - tags                  = {} -> null
+          - tags_all              = {} -> null
+          - throughput            = 0 -> null
+          - volume_id             = "vol-00a78768c18bb533f" -> null
+          - volume_size           = 8 -> null
+          - volume_type           = "gp2" -> null
+            # (1 unchanged attribute hidden)
+        }
+    }
+
+  # aws_instance.create_instance[1] will be destroyed
+  - resource "aws_instance" "create_instance" {
+      - ami                                  = "ami-0b28ebe35b23ae274" -> null
+      - arn                                  = "arn:aws:ec2:eu-west-1:465242563055:instance/i-0721f783559e17265" -> null
+      - associate_public_ip_address          = false -> null
+      - availability_zone                    = "eu-west-1b" -> null
+      - disable_api_stop                     = false -> null
+      - disable_api_termination              = false -> null
+      - ebs_optimized                        = false -> null
+      - get_password_data                    = false -> null
+      - hibernation                          = false -> null
+      - id                                   = "i-0721f783559e17265" -> null
+      - instance_initiated_shutdown_behavior = "stop" -> null
+      - instance_state                       = "running" -> null
+      - instance_type                        = "t2.micro" -> null
+      - ipv6_address_count                   = 0 -> null
+      - ipv6_addresses                       = [] -> null
+      - key_name                             = "my-ec2-key" -> null
+      - monitoring                           = false -> null
+      - placement_partition_number           = 0 -> null
+      - primary_network_interface_id         = "eni-058670ad44815cf5f" -> null
+      - private_dns                          = "ip-31-0-2-98.eu-west-1.compute.internal" -> null
+      - private_ip                           = "31.0.2.98" -> null
+      - region                               = "eu-west-1" -> null
+      - secondary_private_ips                = [] -> null
+      - security_groups                      = [] -> null
+      - source_dest_check                    = true -> null
+      - subnet_id                            = "subnet-01998ed6c5cb91a45" -> null
+      - tags                                 = {
+          - "Name" = "ireland-EC2-priv"
+          - "Type" = "Private"
+        } -> null
+      - tags_all                             = {
+          - "Name" = "ireland-EC2-priv"
+          - "Type" = "Private"
+        } -> null
+      - tenancy                              = "default" -> null
+      - user_data_replace_on_change          = false -> null
+      - vpc_security_group_ids               = [
+          - "sg-067f1bcfcd672622e",
+        ] -> null
+        # (9 unchanged attributes hidden)
+
+      - capacity_reservation_specification {
+          - capacity_reservation_preference = "open" -> null
+        }
+
+      - cpu_options {
+          - core_count       = 1 -> null
+          - threads_per_core = 1 -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - credit_specification {
+          - cpu_credits = "standard" -> null
+        }
+
+      - enclave_options {
+          - enabled = false -> null
+        }
+
+      - maintenance_options {
+          - auto_recovery = "default" -> null
+        }
+
+      - metadata_options {
+          - http_endpoint               = "enabled" -> null
+          - http_protocol_ipv6          = "disabled" -> null
+          - http_put_response_hop_limit = 1 -> null
+          - http_tokens                 = "optional" -> null
+          - instance_metadata_tags      = "disabled" -> null
+        }
+
+      - private_dns_name_options {
+          - enable_resource_name_dns_a_record    = false -> null
+          - enable_resource_name_dns_aaaa_record = false -> null
+          - hostname_type                        = "ip-name" -> null
+        }
+
+      - root_block_device {
+          - delete_on_termination = true -> null
+          - device_name           = "/dev/xvda" -> null
+          - encrypted             = false -> null
+          - iops                  = 100 -> null
+          - tags                  = {} -> null
+          - tags_all              = {} -> null
+          - throughput            = 0 -> null
+          - volume_id             = "vol-0c461484e3d92d988" -> null
+          - volume_size           = 8 -> null
+          - volume_type           = "gp2" -> null
+            # (1 unchanged attribute hidden)
+        }
+    }
+
+  # aws_internet_gateway.create_igw will be destroyed
+  - resource "aws_internet_gateway" "create_igw" {
+      - arn      = "arn:aws:ec2:eu-west-1:465242563055:internet-gateway/igw-0d060aff17cba5823" -> null
+      - id       = "igw-0d060aff17cba5823" -> null
+      - owner_id = "465242563055" -> null
+      - region   = "eu-west-1" -> null
+      - tags     = {
+          - "Name" = "ireland-igw-pub"
+        } -> null
+      - tags_all = {
+          - "Name" = "ireland-igw-pub"
+        } -> null
+      - vpc_id   = "vpc-003a5a97143001f6c" -> null
+    }
+
+  # aws_lb.create_load_balancer will be destroyed
+  - resource "aws_lb" "create_load_balancer" {
+      - arn                                                          = "arn:aws:elasticloadbalancing:eu-west-1:465242563055:loadbalancer/app/ireland-lb/04d0aabd1144962e" -> null
+      - arn_suffix                                                   = "app/ireland-lb/04d0aabd1144962e" -> null
+      - client_keep_alive                                            = 3600 -> null
+      - desync_mitigation_mode                                       = "defensive" -> null
+      - dns_name                                                     = "ireland-lb-506286699.eu-west-1.elb.amazonaws.com" -> null
+      - drop_invalid_header_fields                                   = false -> null
+      - enable_cross_zone_load_balancing                             = true -> null
+      - enable_deletion_protection                                   = false -> null
+      - enable_http2                                                 = true -> null
+      - enable_tls_version_and_cipher_suite_headers                  = false -> null
+      - enable_waf_fail_open                                         = false -> null
+      - enable_xff_client_port                                       = false -> null
+      - enable_zonal_shift                                           = false -> null
+      - id                                                           = "arn:aws:elasticloadbalancing:eu-west-1:465242563055:loadbalancer/app/ireland-lb/04d0aabd1144962e" -> null
+      - idle_timeout                                                 = 60 -> null
+      - internal                                                     = false -> null
+      - ip_address_type                                              = "ipv4" -> null
+      - load_balancer_type                                           = "application" -> null
+      - name                                                         = "ireland-lb" -> null
+      - preserve_host_header                                         = false -> null
+      - region                                                       = "eu-west-1" -> null
+      - security_groups                                              = [
+          - "sg-067f1bcfcd672622e",
+        ] -> null
+      - subnets                                                      = [
+          - "subnet-01998ed6c5cb91a45",
+          - "subnet-08e212cfc0a970df0",
+        ] -> null
+      - tags                                                         = {
+          - "Name" = "ireland-lb"
+        } -> null
+      - tags_all                                                     = {
+          - "Name" = "ireland-lb"
+        } -> null
+      - vpc_id                                                       = "vpc-003a5a97143001f6c" -> null
+      - xff_header_processing_mode                                   = "append" -> null
+      - zone_id                                                      = "Z32O12XQLNTSW2" -> null
+        # (3 unchanged attributes hidden)
+
+      - access_logs {
+          - enabled = false -> null
+            # (2 unchanged attributes hidden)
+        }
+
+      - connection_logs {
+          - enabled = false -> null
+            # (2 unchanged attributes hidden)
+        }
+
+      - subnet_mapping {
+          - subnet_id            = "subnet-01998ed6c5cb91a45" -> null
+            # (4 unchanged attributes hidden)
+        }
+      - subnet_mapping {
+          - subnet_id            = "subnet-08e212cfc0a970df0" -> null
+            # (4 unchanged attributes hidden)
+        }
+    }
+
+  # aws_lb_listener.http will be destroyed
+  - resource "aws_lb_listener" "http" {
+      - arn                                                                 = "arn:aws:elasticloadbalancing:eu-west-1:465242563055:listener/app/ireland-lb/04d0aabd1144962e/fd2d646ccc4d37bb" -> null
+      - id                                                                  = "arn:aws:elasticloadbalancing:eu-west-1:465242563055:listener/app/ireland-lb/04d0aabd1144962e/fd2d646ccc4d37bb" -> null
+      - load_balancer_arn                                                   = "arn:aws:elasticloadbalancing:eu-west-1:465242563055:loadbalancer/app/ireland-lb/04d0aabd1144962e" -> null
+      - port                                                                = 80 -> null
+      - protocol                                                            = "HTTP" -> null
+      - region                                                              = "eu-west-1" -> null
+      - routing_http_response_server_enabled                                = true -> null
+      - tags                                                                = {} -> null
+      - tags_all                                                            = {} -> null
+        # (11 unchanged attributes hidden)
+
+      - default_action {
+          - order            = 1 -> null
+          - target_group_arn = "arn:aws:elasticloadbalancing:eu-west-1:465242563055:targetgroup/ireland-tg/a1cf7d96b7ac358a" -> null
+          - type             = "forward" -> null
+        }
+    }
+
+  # aws_lb_target_group.create_target_group will be destroyed
+  - resource "aws_lb_target_group" "create_target_group" {
+      - arn                                = "arn:aws:elasticloadbalancing:eu-west-1:465242563055:targetgroup/ireland-tg/a1cf7d96b7ac358a" -> null
+      - arn_suffix                         = "targetgroup/ireland-tg/a1cf7d96b7ac358a" -> null
+      - deregistration_delay               = "300" -> null
+      - id                                 = "arn:aws:elasticloadbalancing:eu-west-1:465242563055:targetgroup/ireland-tg/a1cf7d96b7ac358a" -> null
+      - ip_address_type                    = "ipv4" -> null
+      - lambda_multi_value_headers_enabled = false -> null
+      - load_balancer_arns                 = [
+          - "arn:aws:elasticloadbalancing:eu-west-1:465242563055:loadbalancer/app/ireland-lb/04d0aabd1144962e",
+        ] -> null
+      - load_balancing_algorithm_type      = "round_robin" -> null
+      - load_balancing_anomaly_mitigation  = "off" -> null
+      - load_balancing_cross_zone_enabled  = "use_load_balancer_configuration" -> null
+      - name                               = "ireland-tg" -> null
+      - port                               = 80 -> null
+      - protocol                           = "HTTP" -> null
+      - protocol_version                   = "HTTP1" -> null
+      - proxy_protocol_v2                  = false -> null
+      - region                             = "eu-west-1" -> null
+      - slow_start                         = 0 -> null
+      - tags                               = {
+          - "Name" = "ireland-tg"
+        } -> null
+      - tags_all                           = {
+          - "Name" = "ireland-tg"
+        } -> null
+      - target_type                        = "instance" -> null
+      - vpc_id                             = "vpc-003a5a97143001f6c" -> null
+        # (1 unchanged attribute hidden)
+
+      - health_check {
+          - enabled             = true -> null
+          - healthy_threshold   = 2 -> null
+          - interval            = 30 -> null
+          - matcher             = "200" -> null
+          - path                = "/" -> null
+          - port                = "traffic-port" -> null
+          - protocol            = "HTTP" -> null
+          - timeout             = 5 -> null
+          - unhealthy_threshold = 2 -> null
+        }
+
+      - stickiness {
+          - cookie_duration = 86400 -> null
+          - enabled         = false -> null
+          - type            = "lb_cookie" -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - target_failover {}
+
+      - target_group_health {
+          - dns_failover {
+              - minimum_healthy_targets_count      = "1" -> null
+              - minimum_healthy_targets_percentage = "off" -> null
+            }
+          - unhealthy_state_routing {
+              - minimum_healthy_targets_count      = 1 -> null
+              - minimum_healthy_targets_percentage = "off" -> null
+            }
+        }
+
+      - target_health_state {}
+    }
+
+  # aws_lb_target_group_attachment.create_target_group_attachment[0] will be destroyed
+  - resource "aws_lb_target_group_attachment" "create_target_group_attachment" {
+      - id               = "arn:aws:elasticloadbalancing:eu-west-1:465242563055:targetgroup/ireland-tg/a1cf7d96b7ac358a-20250719171211156400000006" -> null
+      - port             = 80 -> null
+      - region           = "eu-west-1" -> null
+      - target_group_arn = "arn:aws:elasticloadbalancing:eu-west-1:465242563055:targetgroup/ireland-tg/a1cf7d96b7ac358a" -> null
+      - target_id        = "i-0369e5a37ca4c0ab9" -> null
+    }
+
+  # aws_lb_target_group_attachment.create_target_group_attachment[1] will be destroyed
+  - resource "aws_lb_target_group_attachment" "create_target_group_attachment" {
+      - id               = "arn:aws:elasticloadbalancing:eu-west-1:465242563055:targetgroup/ireland-tg/a1cf7d96b7ac358a-20250719171210737500000005" -> null
+      - port             = 80 -> null
+      - region           = "eu-west-1" -> null
+      - target_group_arn = "arn:aws:elasticloadbalancing:eu-west-1:465242563055:targetgroup/ireland-tg/a1cf7d96b7ac358a" -> null
+      - target_id        = "i-0721f783559e17265" -> null
+    }
+
+  # aws_route_table.private will be destroyed
+  - resource "aws_route_table" "private" {
+      - arn              = "arn:aws:ec2:eu-west-1:465242563055:route-table/rtb-0a9c69c8b737dd10a" -> null
+      - id               = "rtb-0a9c69c8b737dd10a" -> null
+      - owner_id         = "465242563055" -> null
+      - propagating_vgws = [] -> null
+      - region           = "eu-west-1" -> null
+      - route            = [] -> null
+      - tags             = {
+          - "Name" = "ireland-private-rt"
+        } -> null
+      - tags_all         = {
+          - "Name" = "ireland-private-rt"
+        } -> null
+      - vpc_id           = "vpc-003a5a97143001f6c" -> null
+    }
+
+  # aws_route_table.public will be destroyed
+  - resource "aws_route_table" "public" {
+      - arn              = "arn:aws:ec2:eu-west-1:465242563055:route-table/rtb-0ad8bbc95b4387998" -> null
+      - id               = "rtb-0ad8bbc95b4387998" -> null
+      - owner_id         = "465242563055" -> null
+      - propagating_vgws = [] -> null
+      - region           = "eu-west-1" -> null
+      - route            = [
+          - {
+              - cidr_block                 = "0.0.0.0/0"
+              - gateway_id                 = "igw-0d060aff17cba5823"
+                # (11 unchanged attributes hidden)
+            },
+        ] -> null
+      - tags             = {
+          - "Name" = "ireland-public-rt"
+        } -> null
+      - tags_all         = {
+          - "Name" = "ireland-public-rt"
+        } -> null
+      - vpc_id           = "vpc-003a5a97143001f6c" -> null
+    }
+
+  # aws_route_table_association.private will be destroyed
+  - resource "aws_route_table_association" "private" {
+      - id             = "rtbassoc-05ede3ba3c4ffaf67" -> null
+      - region         = "eu-west-1" -> null
+      - route_table_id = "rtb-0a9c69c8b737dd10a" -> null
+      - subnet_id      = "subnet-01998ed6c5cb91a45" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # aws_route_table_association.public will be destroyed
+  - resource "aws_route_table_association" "public" {
+      - id             = "rtbassoc-03a7527bee2a10063" -> null
+      - region         = "eu-west-1" -> null
+      - route_table_id = "rtb-0ad8bbc95b4387998" -> null
+      - subnet_id      = "subnet-08e212cfc0a970df0" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # aws_security_group.create_security_group will be destroyed
+  - resource "aws_security_group" "create_security_group" {
+      - arn                    = "arn:aws:ec2:eu-west-1:465242563055:security-group/sg-067f1bcfcd672622e" -> null
+      - description            = "Security group for mumbai" -> null
+      - egress                 = [
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - from_port        = 0
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "-1"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 0
+                # (1 unchanged attribute hidden)
+            },
+        ] -> null
+      - id                     = "sg-067f1bcfcd672622e" -> null
+      - ingress                = [
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - from_port        = 22
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 22
+                # (1 unchanged attribute hidden)
+            },
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - from_port        = 80
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 80
+                # (1 unchanged attribute hidden)
+            },
+        ] -> null
+      - name                   = "ireland-sg" -> null
+      - owner_id               = "465242563055" -> null
+      - region                 = "eu-west-1" -> null
+      - revoke_rules_on_delete = false -> null
+      - tags                   = {
+          - "Name" = "Sg-for-ireland"
+        } -> null
+      - tags_all               = {
+          - "Name" = "Sg-for-ireland"
+        } -> null
+      - vpc_id                 = "vpc-003a5a97143001f6c" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # aws_subnet.create_subnet[0] will be destroyed
+  - resource "aws_subnet" "create_subnet" {
+      - arn                                            = "arn:aws:ec2:eu-west-1:465242563055:subnet/subnet-08e212cfc0a970df0" -> null
+      - assign_ipv6_address_on_creation                = false -> null
+      - availability_zone                              = "eu-west-1a" -> null
+      - availability_zone_id                           = "euw1-az2" -> null
+      - cidr_block                                     = "31.0.1.0/24" -> null
+      - enable_dns64                                   = false -> null
+      - enable_lni_at_device_index                     = 0 -> null
+      - enable_resource_name_dns_a_record_on_launch    = false -> null
+      - enable_resource_name_dns_aaaa_record_on_launch = false -> null
+      - id                                             = "subnet-08e212cfc0a970df0" -> null
+      - ipv6_native                                    = false -> null
+      - map_customer_owned_ip_on_launch                = false -> null
+      - map_public_ip_on_launch                        = false -> null
+      - owner_id                                       = "465242563055" -> null
+      - private_dns_hostname_type_on_launch            = "ip-name" -> null
+      - region                                         = "eu-west-1" -> null
+      - tags                                           = {
+          - "Name" = "ireland-sub-pub"
+          - "Type" = "Public"
+        } -> null
+      - tags_all                                       = {
+          - "Name" = "ireland-sub-pub"
+          - "Type" = "Public"
+        } -> null
+      - vpc_id                                         = "vpc-003a5a97143001f6c" -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # aws_subnet.create_subnet[1] will be destroyed
+  - resource "aws_subnet" "create_subnet" {
+      - arn                                            = "arn:aws:ec2:eu-west-1:465242563055:subnet/subnet-01998ed6c5cb91a45" -> null
+      - assign_ipv6_address_on_creation                = false -> null
+      - availability_zone                              = "eu-west-1b" -> null
+      - availability_zone_id                           = "euw1-az3" -> null
+      - cidr_block                                     = "31.0.2.0/24" -> null
+      - enable_dns64                                   = false -> null
+      - enable_lni_at_device_index                     = 0 -> null
+      - enable_resource_name_dns_a_record_on_launch    = false -> null
+      - enable_resource_name_dns_aaaa_record_on_launch = false -> null
+      - id                                             = "subnet-01998ed6c5cb91a45" -> null
+      - ipv6_native                                    = false -> null
+      - map_customer_owned_ip_on_launch                = false -> null
+      - map_public_ip_on_launch                        = false -> null
+      - owner_id                                       = "465242563055" -> null
+      - private_dns_hostname_type_on_launch            = "ip-name" -> null
+      - region                                         = "eu-west-1" -> null
+      - tags                                           = {
+          - "Name" = "ireland-sub-priv"
+          - "Type" = "Private"
+        } -> null
+      - tags_all                                       = {
+          - "Name" = "ireland-sub-priv"
+          - "Type" = "Private"
+        } -> null
+      - vpc_id                                         = "vpc-003a5a97143001f6c" -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # aws_vpc.create_vpc will be destroyed
+  - resource "aws_vpc" "create_vpc" {
+      - arn                                  = "arn:aws:ec2:eu-west-1:465242563055:vpc/vpc-003a5a97143001f6c" -> null
+      - assign_generated_ipv6_cidr_block     = false -> null
+      - cidr_block                           = "31.0.0.0/16" -> null
+      - default_network_acl_id               = "acl-0cafb7509ce579b16" -> null
+      - default_route_table_id               = "rtb-00c46f3d130b9e77c" -> null
+      - default_security_group_id            = "sg-0b49e01d20c24330c" -> null
+      - dhcp_options_id                      = "dopt-0813ea502e1de4d2c" -> null
+      - enable_dns_hostnames                 = false -> null
+      - enable_dns_support                   = true -> null
+      - enable_network_address_usage_metrics = false -> null
+      - id                                   = "vpc-003a5a97143001f6c" -> null
+      - instance_tenancy                     = "default" -> null
+      - ipv6_netmask_length                  = 0 -> null
+      - main_route_table_id                  = "rtb-00c46f3d130b9e77c" -> null
+      - owner_id                             = "465242563055" -> null
+      - region                               = "eu-west-1" -> null
+      - tags                                 = {
+          - "Name" = "ireland-vpc"
+        } -> null
+      - tags_all                             = {
+          - "Name" = "ireland-vpc"
+        } -> null
+        # (4 unchanged attributes hidden)
+    }
+
+Plan: 0 to add, 0 to change, 16 to destroy.
+
+Changes to Outputs:
+  - alb_arn                = "arn:aws:elasticloadbalancing:eu-west-1:465242563055:loadbalancer/app/ireland-lb/04d0aabd1144962e" -> null
+  - instance_public_ips    = [
+      - "54.75.182.152",
+      - "",
+    ] -> null
+  - load_balancer_dns_name = "ireland-lb-506286699.eu-west-1.elb.amazonaws.com" -> null
+aws_lb_listener.http: Destroying... [id=arn:aws:elasticloadbalancing:eu-west-1:465242563055:listener/app/ireland-lb/04d0aabd1144962e/fd2d646ccc4d37bb]
+aws_lb_target_group_attachment.create_target_group_attachment[0]: Destroying... [id=arn:aws:elasticloadbalancing:eu-west-1:465242563055:targetgroup/ireland-tg/a1cf7d96b7ac358a-20250719171211156400000006]
+aws_lb_target_group_attachment.create_target_group_attachment[1]: Destroying... [id=arn:aws:elasticloadbalancing:eu-west-1:465242563055:targetgroup/ireland-tg/a1cf7d96b7ac358a-20250719171210737500000005]
+aws_route_table_association.public: Destroying... [id=rtbassoc-03a7527bee2a10063]
+aws_route_table_association.private: Destroying... [id=rtbassoc-05ede3ba3c4ffaf67]
+aws_lb_target_group_attachment.create_target_group_attachment[0]: Destruction complete after 1s
+aws_lb_listener.http: Destruction complete after 1s
+aws_lb.create_load_balancer: Destroying... [id=arn:aws:elasticloadbalancing:eu-west-1:465242563055:loadbalancer/app/ireland-lb/04d0aabd1144962e]
+aws_lb_target_group_attachment.create_target_group_attachment[1]: Destruction complete after 1s
+aws_lb_target_group.create_target_group: Destroying... [id=arn:aws:elasticloadbalancing:eu-west-1:465242563055:targetgroup/ireland-tg/a1cf7d96b7ac358a]
+aws_instance.create_instance[1]: Destroying... [id=i-0721f783559e17265]
+aws_instance.create_instance[0]: Destroying... [id=i-0369e5a37ca4c0ab9]
+aws_route_table_association.public: Destruction complete after 2s
+aws_route_table.public: Destroying... [id=rtb-0ad8bbc95b4387998]
+aws_lb_target_group.create_target_group: Destruction complete after 1s
+aws_route_table_association.private: Destruction complete after 2s
+aws_route_table.private: Destroying... [id=rtb-0a9c69c8b737dd10a]
+aws_route_table.public: Destruction complete after 2s
+aws_internet_gateway.create_igw: Destroying... [id=igw-0d060aff17cba5823]
+aws_route_table.private: Destruction complete after 2s
+aws_lb.create_load_balancer: Still destroying... [id=arn:aws:elasticloadbalancing:eu-west-1:...lancer/app/ireland-lb/04d0aabd1144962e, 00m10s elapsed]
+aws_instance.create_instance[1]: Still destroying... [id=i-0721f783559e17265, 00m10s elapsed]
+aws_instance.create_instance[0]: Still destroying... [id=i-0369e5a37ca4c0ab9, 00m10s elapsed]
+aws_internet_gateway.create_igw: Still destroying... [id=igw-0d060aff17cba5823, 00m10s elapsed]
+aws_lb.create_load_balancer: Destruction complete after 20s
+aws_instance.create_instance[1]: Still destroying... [id=i-0721f783559e17265, 00m20s elapsed]
+aws_instance.create_instance[0]: Still destroying... [id=i-0369e5a37ca4c0ab9, 00m20s elapsed]
+aws_internet_gateway.create_igw: Still destroying... [id=igw-0d060aff17cba5823, 00m20s elapsed]
+aws_instance.create_instance[1]: Still destroying... [id=i-0721f783559e17265, 00m30s elapsed]
+aws_instance.create_instance[0]: Still destroying... [id=i-0369e5a37ca4c0ab9, 00m30s elapsed]
+aws_internet_gateway.create_igw: Still destroying... [id=igw-0d060aff17cba5823, 00m30s elapsed]
+aws_internet_gateway.create_igw: Destruction complete after 30s
+aws_instance.create_instance[0]: Destruction complete after 33s
+aws_instance.create_instance[1]: Still destroying... [id=i-0721f783559e17265, 00m40s elapsed]
+aws_instance.create_instance[1]: Still destroying... [id=i-0721f783559e17265, 00m50s elapsed]
+aws_instance.create_instance[1]: Still destroying... [id=i-0721f783559e17265, 01m00s elapsed]
+aws_instance.create_instance[1]: Destruction complete after 1m4s
+aws_subnet.create_subnet[1]: Destroying... [id=subnet-01998ed6c5cb91a45]
+aws_subnet.create_subnet[0]: Destroying... [id=subnet-08e212cfc0a970df0]
+aws_security_group.create_security_group: Destroying... [id=sg-067f1bcfcd672622e]
+aws_subnet.create_subnet[1]: Destruction complete after 1s
+aws_subnet.create_subnet[0]: Destruction complete after 1s
+aws_security_group.create_security_group: Destruction complete after 1s
+aws_vpc.create_vpc: Destroying... [id=vpc-003a5a97143001f6c]
+aws_vpc.create_vpc: Destruction complete after 1s
+
+Destroy complete! Resources: 16 destroyed.
