@@ -1,0 +1,64 @@
+aws_vpc.create_vpc: Creating...
+aws_vpc.create_vpc: Creation complete after 5s [id=vpc-003a5a97143001f6c]
+aws_lb_target_group.create_target_group: Creating...
+aws_route_table.private: Creating...
+aws_internet_gateway.create_igw: Creating...
+aws_subnet.create_subnet[1]: Creating...
+aws_security_group.create_security_group: Creating...
+aws_subnet.create_subnet[0]: Creating...
+aws_subnet.create_subnet[0]: Creation complete after 1s [id=subnet-08e212cfc0a970df0]
+aws_subnet.create_subnet[1]: Creation complete after 2s [id=subnet-01998ed6c5cb91a45]
+aws_internet_gateway.create_igw: Creation complete after 2s [id=igw-0d060aff17cba5823]
+aws_route_table.public: Creating...
+aws_route_table.private: Creation complete after 2s [id=rtb-0a9c69c8b737dd10a]
+aws_route_table_association.private: Creating...
+aws_route_table_association.private: Creation complete after 1s [id=rtbassoc-05ede3ba3c4ffaf67]
+aws_lb_target_group.create_target_group: Creation complete after 3s [id=arn:aws:elasticloadbalancing:eu-west-1:465242563055:targetgroup/ireland-tg/a1cf7d96b7ac358a]
+aws_route_table.public: Creation complete after 3s [id=rtb-0ad8bbc95b4387998]
+aws_route_table_association.public: Creating...
+aws_security_group.create_security_group: Creation complete after 5s [id=sg-067f1bcfcd672622e]
+aws_instance.create_instance[1]: Creating...
+aws_lb.create_load_balancer: Creating...
+aws_instance.create_instance[0]: Creating...
+aws_route_table_association.public: Creation complete after 1s [id=rtbassoc-03a7527bee2a10063]
+aws_instance.create_instance[1]: Still creating... [00m10s elapsed]
+aws_lb.create_load_balancer: Still creating... [00m10s elapsed]
+aws_instance.create_instance[0]: Still creating... [00m10s elapsed]
+aws_instance.create_instance[1]: Creation complete after 16s [id=i-0721f783559e17265]
+aws_lb.create_load_balancer: Still creating... [00m20s elapsed]
+aws_instance.create_instance[0]: Still creating... [00m20s elapsed]
+aws_lb.create_load_balancer: Still creating... [00m30s elapsed]
+aws_instance.create_instance[0]: Still creating... [00m30s elapsed]
+aws_instance.create_instance[0]: Creation complete after 36s [id=i-0369e5a37ca4c0ab9]
+aws_lb_target_group_attachment.create_target_group_attachment[0]: Creating...
+aws_lb_target_group_attachment.create_target_group_attachment[1]: Creating...
+aws_lb_target_group_attachment.create_target_group_attachment[1]: Creation complete after 1s [id=arn:aws:elasticloadbalancing:eu-west-1:465242563055:targetgroup/ireland-tg/a1cf7d96b7ac358a-20250719171210737500000005]
+aws_lb_target_group_attachment.create_target_group_attachment[0]: Creation complete after 1s [id=arn:aws:elasticloadbalancing:eu-west-1:465242563055:targetgroup/ireland-tg/a1cf7d96b7ac358a-20250719171211156400000006]
+aws_lb.create_load_balancer: Still creating... [00m40s elapsed]
+aws_lb.create_load_balancer: Still creating... [00m50s elapsed]
+aws_lb.create_load_balancer: Still creating... [01m00s elapsed]
+aws_lb.create_load_balancer: Still creating... [01m10s elapsed]
+aws_lb.create_load_balancer: Still creating... [01m20s elapsed]
+aws_lb.create_load_balancer: Still creating... [01m30s elapsed]
+aws_lb.create_load_balancer: Still creating... [01m40s elapsed]
+aws_lb.create_load_balancer: Still creating... [01m50s elapsed]
+aws_lb.create_load_balancer: Still creating... [02m00s elapsed]
+aws_lb.create_load_balancer: Still creating... [02m10s elapsed]
+aws_lb.create_load_balancer: Still creating... [02m20s elapsed]
+aws_lb.create_load_balancer: Still creating... [02m30s elapsed]
+aws_lb.create_load_balancer: Still creating... [02m40s elapsed]
+aws_lb.create_load_balancer: Still creating... [02m50s elapsed]
+aws_lb.create_load_balancer: Creation complete after 2m59s [id=arn:aws:elasticloadbalancing:eu-west-1:465242563055:loadbalancer/app/ireland-lb/04d0aabd1144962e]
+aws_lb_listener.http: Creating...
+aws_lb_listener.http: Creation complete after 2s [id=arn:aws:elasticloadbalancing:eu-west-1:465242563055:listener/app/ireland-lb/04d0aabd1144962e/fd2d646ccc4d37bb]
+
+Apply complete! Resources: 16 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+alb_arn = "arn:aws:elasticloadbalancing:eu-west-1:465242563055:loadbalancer/app/ireland-lb/04d0aabd1144962e"
+instance_public_ips = [
+  "54.75.182.152",
+  "",
+]
+load_balancer_dns_name = "ireland-lb-506286699.eu-west-1.elb.amazonaws.com"
